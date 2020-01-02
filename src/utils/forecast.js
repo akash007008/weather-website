@@ -7,7 +7,10 @@ const forecast = (longitude,latitude,callback) => {
         }else if(body.error){
             callback('Unable to fetch location. Please Try Again',undefined)
         }else{
-            callback(undefined,body.daily.summary+' The current temprature is '+body.currently.temperature +' degrees and '+body.currently.precipProbability+'% chances of rain.')
+            callback(undefined,{ forecast : body.daily.summary+' The current temprature is '+body.currently.temperature +' degrees and '+body.currently.precipProbability+'% chances of rain.',
+                                high : "Today's High : "+body.daily.data[0].temperatureHigh,
+                                low : "Today's Low : "+body.daily.data[0].temperatureLow
+                            })
         }
     })
 }
